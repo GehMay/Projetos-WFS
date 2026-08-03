@@ -1,0 +1,11 @@
+:root{
+    --cor-fundo: #83ffe0;
+    --cor-texto: #303144;
+}
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+}
