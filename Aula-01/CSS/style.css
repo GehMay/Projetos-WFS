@@ -1,5 +1,5 @@
 /* Variáveis de cores para usar em todo o CSS */
-:root {
+:root { /*Define as Variáveis Cor*/
     --cor-fundo: #ade9d9;
     --cor-h1: #9499eb;
     --cor-h2: #dda2da;

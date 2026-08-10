@@ -1,0 +1,45 @@
+/* Desing Tokens */
+:root{
+    --cor-fundo: #f7f5f0;
+    --cor-texto: #000000;
+    --cor-primaria: #84ebbb;
+    --cor-primaria-escura: #67b691;
+    --cor-texto-suave: #5a655f;
+    --cor-borda: #e2ded4;
+    --cor-estrela: #f5a623;
+    --cor-branco: #fff;
+
+    --cor-restaurante: #e76f51;
+    --cor-parque: #2a9d8f;
+    --cor-museu: #6a4c93;
+    --cor-cafeteria: #b08968;
+    --cor-biblioteca: #457b9d;
+    --cor-teatro: #3d348b;
+
+    --raio: 12px;
+    --sombra: 0 2px 10px rgba(38,48,44,0.08);
+    --sombra-hover: 0 8px 20px rgba(38,48,44,0.14);
+    --espaco-1: 8px;
+    --espaco-2: 16px;
+    --espaco-3: 24px;
+    --espaco-4: 40px;
+}
+
+body{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5;
+}
+
+a{
+    color: inherit;
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+/* Header */
