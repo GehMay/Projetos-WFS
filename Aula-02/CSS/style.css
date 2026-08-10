@@ -1,10 +1,12 @@
+/* https://fecapwebfullstack.netlify.app/ */
+
 /* Desing Tokens */
 :root{
     --cor-fundo: #f7f5f0;
     --cor-texto: #000000;
-    --cor-primaria: #84ebbb;
-    --cor-primaria-escura: #67b691;
-    --cor-texto-suave: #5a655f;
+    --cor-primaria: #275785;
+    --cor-primaria-escura: #4b6a86;
+    --cor-texto-suave: #304948;
     --cor-borda: #e2ded4;
     --cor-estrela: #f5a623;
     --cor-branco: #fff;
@@ -43,3 +45,152 @@ img{
 }
 
 /* Header */
+.cabecalho_logo{
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--cor-branco);
+}
+
+.cabecalho_nav a{
+    text-decoration: none;
+    color: var(--cor-branco);
+    margin-left: var(--espaco-3);
+    opacity: 0.9;
+}
+
+.cabecalho_nav a:hover{
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.cabecalho{
+    background: var(--cor-primaria);
+    color: var(--cor-branco);
+    padding: var(--espaco-2) var(--espaco-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Layout Geral */
+.container{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--espaco-4) var(--espaco-3);
+}
+
+.titulo_pagina{
+    margin: 0 0 var(--espaco-1);
+    font-size: 2rem;
+}
+
+.subtitulo_pagina{
+    margin: 0 0 var(--espaco-4);
+    color: var(--cor-texto-suave);
+}
+
+.cards_grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-3);
+}
+
+.card{
+    background: var(--cor-branco);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover{
+    box-shadow: var(--sombra-hover);
+    transform: translateY(-2px);
+}
+
+.card_banner{
+    height: 120px;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cor-branco);
+    background: var(--cor-texto-suave);
+}
+
+/*Deve-se dar espaço ente o fechamento do .card para o .card_banner, etc. Pois o código é lerdo e lê errado*/
+.card[data-categoria="Cafeteria"] .card_banner{background: var(--cor-cafeteria);}
+.card[data-categoria="Parque"] .card_banner{background: var(--cor-parque);}
+.card[data-categoria="Museu"] .card_banner{background: var(--cor-museu);}
+.card[data-categoria="Restaurante"] .card_banner{background: var(--cor-restaurante);}
+.card[data-categoria="Biblioteca"] .card_banner{background: var(--cor-biblioteca);}
+.card[data-categoria="Teatros"] .card_banner{background: var(--cor-teatro);}
+
+.card_body{
+    padding: var(--espaco-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-1);
+    flex: 1;
+}
+
+.badge{
+    align-self: flex-start;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+    font-weight: 600;
+    color: var(--cor-texto-suave);
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 999px;
+    padding: 2px 10px;
+}
+
+.card_titulo{
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.card_cidade{
+    margin: 0;
+    color: var(--cor-texto-suave);
+    font-size: 0.9rem;
+}
+
+.card_descricao{
+    margin: 0;
+    color: var(--cor-texto-suave);
+    font-size: 0.9;
+    flex: 1;
+}
+
+.card_link{
+    margin-top: var(--espaco-2);
+    align-self: flex-start;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    border: 1px solid var(--cor-primaria-escura);
+    border-radius: var(--raio);
+    padding: 6px 14px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card_link:hover{
+    background: var(--cor-primaria);
+    color: var(--cor-branco);
+}
+
+
+/*Rodapé*/
+.rodape_pagina{
+    text-align: center;
+    padding: var(--espaco-3);
+    color: var(--cor-texto-suave);
+    font-size: 0.85rem;
+}

@@ -1,0 +1,363 @@
+/* ===== Design tokens ===== */
+:root {
+  --cor-primaria: #1f6f78;
+  --cor-primaria-escura: #144e55;
+  --cor-fundo: #f7f5f0;
+  --cor-texto: #26302c;
+  --cor-texto-suave: #5a655f;
+  --cor-borda: #e2ded4;
+  --cor-estrela: #f5a623;
+  --cor-branco: #ffffff;
+
+  --cor-restaurante: #e76f51;
+  --cor-parque: #2a9d8f;
+  --cor-museu: #6a4c93;
+  --cor-cafeteria: #b08968;
+  --cor-livraria: #457b9d;
+  --cor-cinema: #3d348b;
+
+  --raio: 12px;
+  --sombra: 0 2px 10px rgba(38, 48, 44, 0.08);
+  --sombra-hover: 0 8px 20px rgba(38, 48, 44, 0.14);
+  --espaco-1: 8px;
+  --espaco-2: 16px;
+  --espaco-3: 24px;
+  --espaco-4: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Header ===== */
+.cabecalho {
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--espaco-2) var(--espaco-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cabecalho__logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--cor-branco);
+}
+
+.cabecalho__nav a {
+  color: var(--cor-branco);
+  text-decoration: none;
+  margin-left: var(--espaco-3);
+  opacity: 0.9;
+}
+
+.cabecalho__nav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===== Layout geral ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--espaco-4) var(--espaco-3);
+}
+
+.titulo-pagina {
+  margin: 0 0 var(--espaco-1);
+  font-size: 2rem;
+}
+
+.subtitulo-pagina {
+  margin: 0 0 var(--espaco-4);
+  color: var(--cor-texto-suave);
+}
+
+/* ===== Grid de cards (Flexbox) =====
+   TODO (Aula 02, Parte 1): sem nenhuma regra abaixo, os cards ficam
+   empilhados um em cima do outro (comportamento padrão de <article>,
+   que é um elemento de bloco). Sua tarefa:
+
+   1. Faça `.cards-grid` virar um container flexível que quebra linha
+      automaticamente quando não há espaço horizontal suficiente.
+   2. Defina um espaçamento consistente entre os cards.
+   3. Faça cada `.card` crescer/encolher de forma flexível, com uma
+      largura "ideal" de ~280px e uma largura máxima de ~320px, para
+      que a grade fique equilibrada em qualquer tamanho de tela.
+
+   Dica: display: flex + flex-wrap + gap no container;
+         flex-grow/flex-shrink/flex-basis + max-width no item.
+*/
+.cards-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+}
+
+.card {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  flex: 1 1 280px;
+  /* flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 280px; */
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+
+.card-banner {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--cor-branco);
+  background: var(--cor-texto-suave);
+}
+
+.card[data-categoria="restaurante"] .card-banner { background: var(--cor-restaurante); }
+.card[data-categoria="parque"] .card-banner { background: var(--cor-parque); }
+.card[data-categoria="museu"] .card-banner { background: var(--cor-museu); }
+.card[data-categoria="cafeteria"] .card-banner { background: var(--cor-cafeteria); }
+.card[data-categoria="livraria"] .card-banner { background: var(--cor-livraria); }
+.card[data-categoria="cinema"] .card-banner { background: var(--cor-cinema); }
+
+.card-body {
+  padding: var(--espaco-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  flex: 1;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.card-cidade {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.card-descricao {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.card-link {
+  margin-top: var(--espaco-2);
+  align-self: flex-start;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+  border-radius: var(--raio);
+  padding: 6px 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card-link:hover {
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+/* ===== Página de detalhe (CSS Grid, mobile-first) ===== */
+/* .detalhe ainda não tem nenhum estilo de layout — veja o TODO (Aula 02,
+   Parte 2) mais abaixo, perto da media query, com o passo a passo
+   completo. */
+
+.detalhe{
+  display: grid;
+  gap: 20px;
+}
+
+.detalhe-principal,
+.detalhe-resumo,
+.detalhe-avaliacoes {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: var(--espaco-3);
+}
+
+.detalhe-banner {
+  height: 160px;
+  border-radius: var(--raio);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  color: var(--cor-branco);
+  background: var(--cor-texto-suave);
+  margin-bottom: var(--espaco-2);
+}
+
+.detalhe-banner[data-categoria="restaurante"] { background: var(--cor-restaurante); }
+.detalhe-banner[data-categoria="parque"] { background: var(--cor-parque); }
+.detalhe-banner[data-categoria="museu"] { background: var(--cor-museu); }
+.detalhe-banner[data-categoria="cafeteria"] { background: var(--cor-cafeteria); }
+.detalhe-banner[data-categoria="livraria"] { background: var(--cor-livraria); }
+.detalhe-banner[data-categoria="cinema"] { background: var(--cor-cinema); }
+
+.detalhe-titulo {
+  margin: var(--espaco-2) 0 0;
+}
+
+.detalhe-cidade {
+  color: var(--cor-texto-suave);
+  margin: var(--espaco-1) 0;
+}
+
+.detalhe-descricao {
+  margin: var(--espaco-2) 0 0;
+}
+
+.detalhe-resumo h2,
+.detalhe-avaliacoes h2 {
+  margin-top: 0;
+}
+
+.nota-media {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: var(--espaco-1) 0;
+}
+
+.nota-media .estrelas {
+  font-size: 1.3rem;
+  color: var(--cor-estrela);
+  margin-left: var(--espaco-1);
+}
+
+.total-avaliacoes {
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+.lista-avaliacoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.avaliacao-item {
+  border-top: 1px solid var(--cor-borda);
+  padding-top: var(--espaco-2);
+}
+
+.avaliacao-item:first-child { /* Mexe só no primeiro filho */
+  border-top: none;
+  padding-top: 0;
+}
+
+.avaliacao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espaco-1);
+}
+
+.estrelas {
+  color: var(--cor-estrela);
+  letter-spacing: 2px;
+}
+
+.link-voltar {
+  display: inline-block;
+  margin-bottom: var(--espaco-3);
+  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+/* TODO (Aula 02, Parte 2): a página de detalhe está mobile-first — no
+   estado atual, `.detalhe-principal`, `.detalhe-resumo` e
+   `.detalhe-avaliacoes` apenas se empilham na ordem em que aparecem no
+   HTML (o que já é o comportamento correto para telas pequenas!).
+
+   Sua tarefa é usar CSS GRID para, a partir de uma largura de tela
+   maior (sugestão: 768px), reorganizar esse mesmo conteúdo em duas
+   colunas, sem mudar o HTML:
+
+   1. Adicione `display: grid` (com um `gap`) em `.detalhe`.
+   2. Dentro de uma media query `@media (min-width: 768px)`, defina em
+      `.detalhe` duas colunas (ex.: 2fr 1fr) usando
+      `grid-template-columns` e um `grid-template-areas` com duas
+      linhas:
+        - linha 1: conteúdo principal + resumo de nota, lado a lado
+        - linha 2: avaliações ocupando a largura toda
+   3. Associe cada seção à sua área com a propriedade `grid-area`
+      (`.detalhe-principal`, `.detalhe-resumo`, `.detalhe-avaliacoes`).
+
+   Dica: pense primeiro no layout mobile (sem media query, tudo
+   empilhado) e só depois "encaixe" o grid para telas maiores — essa é
+   a essência de mobile-first.
+*/
+
+/*Principais branckin points mobile*/
+@media(min-width: 768px){
+  .detalhe{
+    grid-template-columns: 2fr 1r;
+    grid-template-areas: 
+      "principal resumo"
+      "Avaliações Avaliações";
+  }
+  .detalhe-principal{grid-area: principal;}
+  .detalhe-resumo{grid-area: resumo;}
+  .detalhe-avaliacoes{grid-area: Avaliações;}
+}
+
+/* ===== Rodapé ===== */
+.rodape {
+  text-align: center;
+  padding: var(--espaco-3);
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
