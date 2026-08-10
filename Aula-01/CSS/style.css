@@ -1,11 +1,149 @@
-:root{
-    --cor-fundo: #83ffe0;
-    --cor-texto: #303144;
+/* Variáveis de cores para usar em todo o CSS */
+:root {
+    --cor-fundo: #ade9d9;
+    --cor-h1: #9499eb;
+    --cor-h2: #dda2da;
+    --cor-texto: #572525;
+    --cor-card: #ffffff;
+    --cor-cabecalho: #ffffffaa;
+    --cor-texto-secundario: #555555;
+    --cor-branco: #ffffff;
+    --cor-rodape: #333333;
+    --cor-sombra: rgba(0, 0, 0, 0.08);
 }
-body{
-    margin: 0;
+
+/* Faz com que o padding e borda sejam incluídos na largura total dos elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilo base da página */
+body {
+    margin: 0; /* Remove a margem padrão do navegador */
+    padding: 16px; /* Dá um espaçamento interno na página */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--cor-fundo);
     color: var(--cor-texto);
-    line-height: 1.5;
+    line-height: 1.5; /* Espaça melhor as linhas de texto */
+}
+
+/* Cabeçalho com logo e menu alinhados */
+header.cabecalho {
+    display: flex;
+    justify-content: space-between; /* separa os itens em cada lado */
+    align-items: center; /* alinha verticalmente ao centro */
+    gap: 16px; /* espaço entre os itens */
+    padding: 16px;
+    background: var(--cor-cabecalho);
+    border-radius: 12px;
+}
+
+/* Estilo dos links do cabeçalho */
+header.cabecalho a {
+    text-decoration: none;
+    color: var(--cor-h1);
+    font-weight: 700;
+}
+
+/* Limita a largura do conteúdo principal e centraliza na página */
+main.container {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+/* Centraliza o título e o subtítulo */
+.titulo_pagina,
+.subtituli_pagina {
+    text-align: center;
+}
+
+.titulo_pagina {
+    color: var(--cor-h1);
+    margin-bottom: 8px;
+}
+
+.subtituli_pagina {
+    color: var(--cor-texto);
+    margin-bottom: 24px;
+}
+
+/* Grid responsivo para os cards */
+.cards_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; /* espaço entre os cards */
+}
+
+/* Estilo do card individual */
+.card {
+    background: var(--cor-card);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 10px 20px var(--cor-sombra);
+    text-align: center;
+}
+
+.card_banner {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+/* Centraliza o conteúdo interno do card */
+.card_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.card_title {
+    color: var(--cor-h2);
+    margin: 0;
+}
+
+.card_cidade {
+    margin: 0;
+    color: var(--cor-texto-secundario);
+}
+
+/* Faz a imagem ficar centralizada e responsiva */
+.card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* Descrições com texto centralizado e quebra automática */
+.card_descricao {
+    margin: 0;
+    text-align: center;
+    white-space: normal; /* permite quebra de linha normal */
+    overflow-wrap: break-word; /* evita que palavras grandes saiam do card */
+    word-break: break-word; /* quebra palavras longas se necessário */
+}
+
+/* Estilo do link que parece botão */
+.card_link {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--cor-h1);
+    color: var(--cor-branco);
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.card_link:hover {
+    background: var(--cor-h2);
+}
+
+/* Estilo do rodapé */
+.footer_pagina,
+.rodape_pagina {
+    text-align: center;
+    margin-top: 32px;
+    color: var(--cor-rodape);
 }
