@@ -1,0 +1,508 @@
+/* Variáveis de cores para usar em todo o CSS */
+:root { /*Define as Variáveis Cor*/
+    --cor-fundo: #ade9d9;
+    --cor-nome: #8d8fbb;
+    --cor-nome-hover: #dda2da;
+    --cor-texto: #572525;
+    --cor-card: #ffffff;
+    --cor-cabecalho: #ffffffaa;
+    --cor-texto-secundario: #555555;
+    --cor-branco: #ffffff;
+    --cor-rodape: #333333;
+    --cor-sombra: rgba(0, 0, 0, 0.08);
+    --sombra-hover: 0 8px 20px rgba(38, 48, 44, 0.14);
+    --sombra: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+    --cor-restaurante: #e76f51;
+    --cor-parque: #2a9d8f;
+    --cor-museu: #6a4c93;
+    --cor-cafeteria: #b08968;
+    --cor-biblioteca: #457b9d;
+    --cor-teatro: #3d348b;
+    --cor-texto-suave: #6b7280;
+    --cor-estrela: #f4b400;
+    --cor-borda: #e5e7eb;
+    --cor-primaria: #8d8fbb;
+
+    --raio: 12px;
+    --espaco-1: 8px;
+    --espaco-2: 16px;
+    --espaco-3: 24px;
+    --espaco-4: 40px;
+}
+
+/* Faz com que o padding e borda sejam incluídos na largura total dos elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Estilo base da página */
+body {
+    margin: 0; /* Remove a margem padrão do navegador */
+    padding: 16px; /* Dá um espaçamento interno na página */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.5; /* Espaça melhor as linhas de texto */
+}
+
+/* Cabeçalho com logo e menu alinhados */
+header.cabecalho {
+    display: flex;
+    justify-content: space-between; /* separa os itens em cada lado */
+    align-items: center; /* alinha verticalmente ao centro */
+    gap: 16px; /* espaço entre os itens */
+    padding: 16px;
+    background: var(--cor-cabecalho);
+    border-radius: 12px;
+}
+
+/* Estilo dos links do cabeçalho */
+header.cabecalho a,
+header.cabecalho .cabecalho_logo,
+header.cabecalho .cabecalho__logo {
+    text-decoration: none;
+    color: var(--cor-nome);
+    font-weight: 700;
+}
+
+/* Limita a largura do conteúdo principal e centraliza na página */
+main.container {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+/* Centraliza o título e o subtítulo */
+.titulo_pagina,
+.subtituli_pagina {
+    text-align: center;
+}
+
+.titulo_pagina {
+    color: var(--cor-nome);
+    margin-bottom: 8px;
+}
+
+.subtituli_pagina {
+    color: var(--cor-texto);
+    margin-bottom: 24px;
+}
+
+/* Grid responsivo para os cards */
+.cards_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; /* espaço entre os cards */
+}
+
+/* Estilo do card individual */
+.card {
+    background: var(--cor-card);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 10px 20px var(--cor-sombra);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-hover);
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: var(--cor-cafeteria);
+    color: var(--cor-branco);
+}
+
+.card_banner {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+/* Centraliza o conteúdo interno do card */
+.card_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.card_title {
+    color: var(--cor-texto);
+    margin: 0;
+}
+
+.card[data-categoria="cafeteria"] {
+    background: #fff8f2;
+    border-color: var(--cor-cafeteria);
+}
+
+.card[data-categoria="cafeteria"] .card_title,
+.card[data-categoria="cafeteria"] .badge,
+.card[data-categoria="cafeteria"] .card_banner {
+    color: var(--cor-cafeteria);
+}
+
+.card[data-categoria="cafeteria"] .badge,
+.card[data-categoria="cafeteria"] .card_link {
+    background: var(--cor-cafeteria);
+    color: var(--cor-branco);
+}
+
+.card[data-categoria="parque"] {
+    background: #f3fdfb;
+    border-color: var(--cor-parque);
+}
+
+.card[data-categoria="parque"] .card_title,
+.card[data-categoria="parque"] .badge,
+.card[data-categoria="parque"] .card_banner {
+    color: var(--cor-parque);
+}
+
+.card[data-categoria="parque"] .badge,
+.card[data-categoria="parque"] .card_link {
+    background: var(--cor-parque);
+    color: var(--cor-branco);
+}
+
+.card[data-categoria="museu"] {
+    background: #f7f3ff;
+    border-color: var(--cor-museu);
+}
+
+.card[data-categoria="museu"] .card_title,
+.card[data-categoria="museu"] .badge,
+.card[data-categoria="museu"] .card_banner {
+    color: var(--cor-museu);
+}
+
+.card[data-categoria="museu"] .badge,
+.card[data-categoria="museu"] .card_link {
+    background: var(--cor-museu);
+    color: var(--cor-branco);
+}
+
+.card[data-categoria="restaurante"] {
+    background: #fff4f0;
+    border-color: var(--cor-restaurante);
+}
+
+.card[data-categoria="restaurante"] .card_title,
+.card[data-categoria="restaurante"] .badge,
+.card[data-categoria="restaurante"] .card_banner {
+    color: var(--cor-restaurante);
+}
+
+.card[data-categoria="restaurante"] .badge,
+.card[data-categoria="restaurante"] .card_link {
+    background: var(--cor-restaurante);
+    color: var(--cor-branco);
+}
+
+.card[data-categoria="biblioteca"] {
+    background: #f3f8fc;
+    border-color: var(--cor-biblioteca);
+}
+
+.card[data-categoria="biblioteca"] .card_title,
+.card[data-categoria="biblioteca"] .badge,
+.card[data-categoria="biblioteca"] .card_banner {
+    color: var(--cor-biblioteca);
+}
+
+.card[data-categoria="biblioteca"] .badge,
+.card[data-categoria="biblioteca"] .card_link {
+    background: var(--cor-biblioteca);
+    color: var(--cor-branco);
+}
+
+.card[data-categoria="teatro"] {
+    background: #f5f2ff;
+    border-color: var(--cor-teatro);
+}
+
+.card[data-categoria="teatro"] .card_title,
+.card[data-categoria="teatro"] .badge,
+.card[data-categoria="teatro"] .card_banner {
+    color: var(--cor-teatro);
+}
+
+.card[data-categoria="teatro"] .badge,
+.card[data-categoria="teatro"] .card_link {
+    background: var(--cor-teatro);
+    color: var(--cor-branco);
+}
+
+.card_cidade {
+    margin: 0;
+    color: var(--cor-texto-secundario);
+}
+
+/* Faz a imagem ficar centralizada e responsiva */
+.card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+/* Descrições com texto centralizado e quebra automática */
+.card_descricao {
+    margin: 0;
+    text-align: center;
+    white-space: normal; /* permite quebra de linha normal */
+    overflow-wrap: break-word; /* evita que palavras grandes saiam do card */
+    word-break: break-word; /* quebra palavras longas se necessário */
+}
+
+/* Estilo do link que parece botão */
+.card_link {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--cor-nome);
+    color: var(--cor-branco);
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.card_link:hover {
+    background: var(--cor-nome-hover);
+}
+
+/* Estilo do rodapé */
+.footer_pagina,
+.rodape_pagina {
+    text-align: center;
+    margin-top: 32px;
+    color: var(--cor-rodape);
+}
+
+/* ===== Página de detalhe (CSS Grid, mobile-first) ===== */
+.detalhe{
+  display: grid;
+  gap: 20px;
+}
+
+.detalhe-principal,
+.detalhe-resumo,
+.detalhe-avaliacoes {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: var(--espaco-3);
+}
+
+.detalhe-banner {
+  height: 160px;
+  border-radius: var(--raio);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  color: var(--cor-branco);
+  background: var(--cor-texto-suave);
+  margin-bottom: var(--espaco-2);
+}
+
+.detalhe-banner[data-categoria="restaurante"] { background: var(--cor-restaurante); }
+.detalhe-banner[data-categoria="parque"] { background: var(--cor-parque); }
+.detalhe-banner[data-categoria="museu"] { background: var(--cor-museu); }
+.detalhe-banner[data-categoria="cafeteria"] { background: var(--cor-cafeteria); }
+.detalhe-banner[data-categoria="biblioteca"] { background: var(--cor-biblioteca); }
+.detalhe-banner[data-categoria="teatro"] { background: var(--cor-teatro); }
+
+.detalhe[data-categoria="cafeteria"] .badge {
+  background: var(--cor-cafeteria);
+  color: var(--cor-branco);
+}
+
+.detalhe[data-categoria="cafeteria"] .link-voltar {
+  color: var(--cor-cafeteria);
+}
+
+.detalhe[data-categoria="parque"] .badge {
+  background: var(--cor-parque);
+  color: var(--cor-branco);
+}
+
+.detalhe[data-categoria="parque"] .link-voltar {
+  color: var(--cor-parque);
+}
+
+.detalhe[data-categoria="museu"] .badge {
+  background: var(--cor-museu);
+  color: var(--cor-branco);
+}
+
+.detalhe[data-categoria="museu"] .link-voltar {
+  color: var(--cor-museu);
+}
+
+.detalhe[data-categoria="restaurante"] .badge {
+  background: var(--cor-restaurante);
+  color: var(--cor-branco);
+}
+
+.detalhe[data-categoria="restaurante"] .link-voltar {
+  color: var(--cor-restaurante);
+}
+
+.detalhe[data-categoria="biblioteca"] .badge {
+  background: var(--cor-biblioteca);
+  color: var(--cor-branco);
+}
+
+.detalhe[data-categoria="biblioteca"] .link-voltar {
+  color: var(--cor-biblioteca);
+}
+
+.detalhe[data-categoria="teatro"] .badge {
+  background: var(--cor-teatro);
+  color: var(--cor-branco);
+}
+
+.detalhe[data-categoria="teatro"] .link-voltar {
+  color: var(--cor-teatro);
+}
+
+.detalhe[data-categoria="cafeteria"] .detalhe-principal,
+.detalhe[data-categoria="cafeteria"] .detalhe-resumo,
+.detalhe[data-categoria="cafeteria"] .detalhe-avaliacoes {
+  border-top: 4px solid var(--cor-cafeteria);
+}
+
+.detalhe[data-categoria="parque"] .detalhe-principal,
+.detalhe[data-categoria="parque"] .detalhe-resumo,
+.detalhe[data-categoria="parque"] .detalhe-avaliacoes {
+  border-top: 4px solid var(--cor-parque);
+}
+
+.detalhe[data-categoria="museu"] .detalhe-principal,
+.detalhe[data-categoria="museu"] .detalhe-resumo,
+.detalhe[data-categoria="museu"] .detalhe-avaliacoes {
+  border-top: 4px solid var(--cor-museu);
+}
+
+.detalhe[data-categoria="restaurante"] .detalhe-principal,
+.detalhe[data-categoria="restaurante"] .detalhe-resumo,
+.detalhe[data-categoria="restaurante"] .detalhe-avaliacoes {
+  border-top: 4px solid var(--cor-restaurante);
+}
+
+.detalhe[data-categoria="biblioteca"] .detalhe-principal,
+.detalhe[data-categoria="biblioteca"] .detalhe-resumo,
+.detalhe[data-categoria="biblioteca"] .detalhe-avaliacoes {
+  border-top: 4px solid var(--cor-biblioteca);
+}
+
+.detalhe[data-categoria="teatro"] .detalhe-principal,
+.detalhe[data-categoria="teatro"] .detalhe-resumo,
+.detalhe[data-categoria="teatro"] .detalhe-avaliacoes {
+  border-top: 4px solid var(--cor-teatro);
+}
+
+.detalhe-titulo {
+  margin: var(--espaco-2) 0 0;
+}
+
+.detalhe-cidade {
+  color: var(--cor-texto-suave);
+  margin: var(--espaco-1) 0;
+}
+
+.detalhe-descricao {
+  margin: var(--espaco-2) 0 0;
+}
+
+.detalhe-resumo h2,
+.detalhe-avaliacoes h2 {
+  margin-top: 0;
+}
+
+.nota-media {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: var(--espaco-1) 0;
+}
+
+.nota-media .estrelas {
+  font-size: 1.3rem;
+  color: var(--cor-estrela);
+  margin-left: var(--espaco-1);
+}
+
+.total-avaliacoes {
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+.lista-avaliacoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.avaliacao-item {
+  border-top: 1px solid var(--cor-borda);
+  padding-top: var(--espaco-2);
+}
+
+.avaliacao-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.avaliacao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espaco-1);
+}
+
+.estrelas {
+  color: var(--cor-estrela);
+  letter-spacing: 2px;
+}
+
+.link-voltar {
+  display: inline-block;
+  margin-bottom: var(--espaco-3);
+  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .detalhe {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "principal resumo"
+      "avaliacoes avaliacoes";
+  }
+
+  .detalhe-principal { grid-area: principal; }
+  .detalhe-resumo { grid-area: resumo; }
+  .detalhe-avaliacoes { grid-area: avaliacoes; }
+}
+
+/* ===== Rodapé ===== */
+.rodape {
+  text-align: center;
+  padding: var(--espaco-3);
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
