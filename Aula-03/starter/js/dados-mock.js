@@ -27,5 +27,6 @@ var avaliacoesMock = [
   { id: 6, lugarId: 4, usuarioId: 2, nota: 5, comentario: "Comida excelente, porções generosas." },
   { id: 7, lugarId: 4, usuarioId: 3, nota: 2, comentario: "Demorou muito para servir." },
   { id: 8, lugarId: 5, usuarioId: 4, nota: 5, comentario: "Adorei os eventos literários." },
-  { id: 9, lugarId: 6, usuarioId: 1, nota: 3, comentario: "Cadeiras pouco confortáveis." }
+  { id: 9, lugarId: 3, usuarioId: 3, nota: 2, comentario: "Muito cheio, mal dá para andar" },
+  { id: 10, lugarId: 6, usuarioId: 1, nota: 3, comentario: "Cadeiras pouco confortáveis." }
 ];

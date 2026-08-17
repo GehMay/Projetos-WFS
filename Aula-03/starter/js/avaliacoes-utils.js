@@ -13,6 +13,15 @@ function calcularMedia(avaliacoes) {
   // quantidade de avaliações. Se o array estiver vazio, retorne 0 (evite
   // dividir por zero). Arredonde o resultado para 1 casa decimal — dica:
   // Math.round(valor * 10) / 10.
+  if(!avaliacoes || avaliacoes.length === 0){
+    return 0;
+  }
+  // ! neste contexto significa não ou negação
+  // || é um operador lógico "OU"
+  const soma = avaliacoes.reduce(function(total, avaliacao){
+    return total + avaliacao.nota;
+  }, 0 )
+  return Math.round((soma/avaliacoes.length)*10)/10
 }
 
 /**
@@ -23,6 +32,9 @@ function calcularMedia(avaliacoes) {
 function filtrarPorLugar(avaliacoes, lugarId) {
   // TODO (Aula 03): use Array.prototype.filter para retornar apenas as
   // avaliações cujo `lugarId` seja igual ao parâmetro recebido.
+  return avaliacoes.filter(function(avaliacao){
+    return avaliacao.lugarId === lugarId;
+  });
 }
 
 /**
@@ -33,6 +45,9 @@ function filtrarPorLugar(avaliacoes, lugarId) {
 function filtrarPorNotaMinima(avaliacoes, notaMinima) {
   // TODO (Aula 03): use Array.prototype.filter para retornar apenas as
   // avaliações cuja `nota` seja maior ou igual a `notaMinima`.
+  return avaliacoes.filter(function(avaliacao){
+    return avaliacao.nota >= notaMinima;
+  })
 }
 
 /**
@@ -49,4 +64,19 @@ function ordenarPorNota(avaliacoes, ordem) {
   //   3. Se `ordem` for "asc", a menor nota vem primeiro; caso
   //      contrário (padrão "desc"), a maior nota vem primeiro.
   //   4. Retorne a cópia ordenada.
+  ordem = ordem || "desc"
+  const copia = avaliacoes.slice();
+  copia.sort(function(a, b) {
+    return ordem === "asc" ? a.nota - b.nota : b.nota - a.nota;
+  });
+  return copia;
 }
+//operador ternário
+//estrutura:
+//condição ? valorSeVerdadeiro : valorSeFalso
+/*if (ordem==="asc"){
+  return a.nota-b.nota
+}
+else{
+  return b.nota-a.nota
+} */
