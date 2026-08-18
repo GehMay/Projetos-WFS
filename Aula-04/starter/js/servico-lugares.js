@@ -18,6 +18,12 @@ async function buscarLugares() {
   // 3. Caso contrário, retorne `resposta.json()` (essa chamada também
   //    retorna uma Promise, então pode usar `return resposta.json()`
   //    sem `await`).
+  //Permite que a função trabalhe com funções demoradas, sem travar o resto do projeto, "Trabalha em segundo plano"
+  const resposta = await fetch(BASE_DADOS + "lugares.json");
+  if(!resposta.ok){
+    throw new Error("Não foi possível carregar os Lugares!!!(HTTP " + resposta.status +")")
+  }
+  return resposta.json()
 }
 
 /**
@@ -28,6 +34,11 @@ async function buscarLugares() {
 async function buscarAvaliacoes() {
   // TODO (Aula 04): igual à função acima, mas buscando
   // BASE_DADOS + "avaliacoes.json".
+  const resposta = await fetch(BASE_DADOS + "avaliacoes.json");
+  if(!resposta.ok){
+    throw new Error("Não foi possível carregar as Avaliações!!!(HTTP " + resposta.status +")")
+  }
+  return resposta.json()
 }
 
 /**
@@ -38,4 +49,9 @@ async function buscarCaminhoInexistente() {
   // TODO (Aula 04): busque BASE_DADOS + "arquivo-que-nao-existe.json" e
   // lance um Error quando a resposta não for `ok`. Isso vai alimentar o
   // botão "Simular erro (404)" da página.
+  const resposta = await fetch(BASE_DADOS + "arquivo-que-nao-existe.json");
+  if(!resposta.ok){
+    throw new Error("Recurso não encontrado!!!(HTTP " + resposta.status +")")
+  }
+  return resposta.json()
 }
