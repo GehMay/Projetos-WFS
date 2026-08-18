@@ -1,0 +1,37 @@
+O arquivo avaliacoes-utils.js contém funções utilitárias que ajudam a trabalhar com um array de avaliações. Essas funções são puras, ou seja, elas não interagem diretamente com o DOM (a interface visual da página). Elas recebem dados como entrada e devolvem dados como saída. Vamos entender cada função e o que ela faz:
+
+Função calcularMedia
+Essa função calcula a média das notas de um array de avaliações. Aqui está o que acontece:
+
+Entrada: Um array de objetos, onde cada objeto tem uma propriedade nota (ex.: { nota: 8 }).
+Saída: Um número que representa a média arredondada para 1 casa decimal. Se o array estiver vazio, retorna 0.
+Como funciona:
+Soma todas as notas usando o método reduce.
+Divide a soma pelo número de avaliações.
+Arredonda o resultado para 1 casa decimal usando Math.round(valor * 10) / 10.
+Função filtrarPorLugar
+Essa função filtra as avaliações de um lugar específico. Aqui está o que ela deve fazer:
+
+Entrada: Um array de avaliações e um lugarId (número que identifica o lugar).
+Saída: Um novo array contendo apenas as avaliações cujo lugarId seja igual ao parâmetro recebido.
+Como funciona:
+Usa o método filter para criar um novo array com as avaliações que atendem à condição avaliacao.lugarId === lugarId.
+Função filtrarPorNotaMinima
+Essa função filtra as avaliações com nota maior ou igual a uma nota mínima. Aqui está o que ela deve fazer:
+
+Entrada: Um array de avaliações e um número notaMinima.
+Saída: Um novo array contendo apenas as avaliações cuja nota seja maior ou igual à notaMinima.
+Como funciona:
+Usa o método filter para criar um novo array com as avaliações que atendem à condição avaliacao.nota >= notaMinima.
+Função ordenarPorNota
+Essa função ordena as avaliações por nota, de forma ascendente (asc) ou descendente (desc). Aqui está o que ela deve fazer:
+
+Entrada: Um array de avaliações e uma string ordem (opcional, padrão é "desc").
+Saída: Um novo array ordenado por nota.
+Como funciona:
+Cria uma cópia do array original usando slice (para evitar modificar o array original).
+Usa o método sort para ordenar a cópia:
+Se ordem for "asc", a menor nota vem primeiro.
+Se ordem for "desc", a maior nota vem primeiro.
+Retorna o array ordenado.
+Essas funções são úteis para manipular dados de avaliações de forma eficiente e reutilizável. Você pode testá-las no arquivo testes.html para verificar se estão funcionando corretamente.
