@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carregar dados via fetch | Avaliações</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    <a href="index.html" class="cabecalho__logo">📍 Avaliações</a>
+    <nav class="cabecalho__nav">
+      <a href="index.html">Lugares</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="titulo-pagina">Carregando dados com fetch</h1>
+    <p class="subtitulo-pagina">
+      Os dados de <code>dados/lugares.json</code> e
+      <code>dados/avaliacoes.json</code> simulam a futura API (aula 09+).
+      Esta página só sabe conversar com um "servidor" — de onde os dados
+      vêm exatamente não importa para o código de renderização.
+    </p>
+
+    <p><strong>Importante:</strong> abrir este arquivo direto (<code>file://</code>)
+      faz o navegador bloquear o <code>fetch</code> por política de CORS.
+      Sirva esta pasta por HTTP — veja o <code>README.md</code> da aula para
+      o comando exato.</p>
+
+    <div class="botoes-acao">
+      <button id="botao-carregar" class="botao">Carregar dados</button>
+      <button id="botao-simular-erro" class="botao botao--secundario">Simular erro (404)</button>
+    </div>
+
+    <div id="estado"></div>
+    <ul id="resultado" class="lista-resultados"></ul>
+  </main>
+
+  <footer class="rodape">
+    Projeto de referência do curso &middot; Aula 05
+  </footer>
+
+  <script src="js/avaliacoes-utils.js"></script>
+  <script src="js/servico-lugares.js"></script>
+  <script src="js/carregar-dados.js"></script>
+</body>
+</html>

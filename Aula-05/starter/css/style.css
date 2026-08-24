@@ -1,0 +1,412 @@
+/* ===== Design tokens ===== */
+:root {
+  --cor-primaria: #1f6f78;
+  --cor-primaria-escura: #144e55;
+  --cor-fundo: #f7f5f0;
+  --cor-texto: #26302c;
+  --cor-texto-suave: #5a655f;
+  --cor-borda: #e2ded4;
+  --cor-estrela: #f5a623;
+  --cor-branco: #ffffff;
+
+  --cor-restaurante: #e76f51;
+  --cor-parque: #2a9d8f;
+  --cor-museu: #6a4c93;
+  --cor-cafeteria: #b08968;
+  --cor-livraria: #457b9d;
+  --cor-cinema: #3d348b;
+
+  --raio: 12px;
+  --sombra: 0 2px 10px rgba(38, 48, 44, 0.08);
+  --sombra-hover: 0 8px 20px rgba(38, 48, 44, 0.14);
+  --espaco-1: 8px;
+  --espaco-2: 16px;
+  --espaco-3: 24px;
+  --espaco-4: 40px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Header ===== */
+.cabecalho {
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: var(--espaco-2) var(--espaco-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cabecalho__logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--cor-branco);
+}
+
+.cabecalho__nav a {
+  color: var(--cor-branco);
+  text-decoration: none;
+  margin-left: var(--espaco-3);
+  opacity: 0.9;
+}
+
+.cabecalho__nav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ===== Layout geral ===== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--espaco-4) var(--espaco-3);
+}
+
+.titulo-pagina {
+  margin: 0 0 var(--espaco-1);
+  font-size: 2rem;
+}
+
+.subtitulo-pagina {
+  margin: 0 0 var(--espaco-4);
+  color: var(--cor-texto-suave);
+}
+
+/* ===== Grid de cards (Flexbox) ===== */
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+}
+
+.card {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  flex: 1 1 280px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+
+.card-banner {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--cor-branco);
+  background: var(--cor-texto-suave);
+}
+
+.card[data-categoria="restaurante"] .card-banner { background: var(--cor-restaurante); }
+.card[data-categoria="parque"] .card-banner { background: var(--cor-parque); }
+.card[data-categoria="museu"] .card-banner { background: var(--cor-museu); }
+.card[data-categoria="cafeteria"] .card-banner { background: var(--cor-cafeteria); }
+.card[data-categoria="livraria"] .card-banner { background: var(--cor-livraria); }
+.card[data-categoria="cinema"] .card-banner { background: var(--cor-cinema); }
+
+.card-body {
+  padding: var(--espaco-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  flex: 1;
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--cor-texto-suave);
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.card-cidade {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.card-descricao {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.card-link {
+  margin-top: var(--espaco-2);
+  align-self: flex-start;
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+  border-radius: var(--raio);
+  padding: 6px 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card-link:hover {
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
+/* ===== Página de detalhe (CSS Grid, mobile-first) ===== */
+.detalhe {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.detalhe-principal,
+.detalhe-resumo,
+.detalhe-avaliacoes {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: var(--espaco-3);
+}
+
+.detalhe-banner {
+  height: 160px;
+  border-radius: var(--raio);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  color: var(--cor-branco);
+  background: var(--cor-texto-suave);
+  margin-bottom: var(--espaco-2);
+}
+
+.detalhe-banner[data-categoria="restaurante"] { background: var(--cor-restaurante); }
+.detalhe-banner[data-categoria="parque"] { background: var(--cor-parque); }
+.detalhe-banner[data-categoria="museu"] { background: var(--cor-museu); }
+.detalhe-banner[data-categoria="cafeteria"] { background: var(--cor-cafeteria); }
+.detalhe-banner[data-categoria="livraria"] { background: var(--cor-livraria); }
+.detalhe-banner[data-categoria="cinema"] { background: var(--cor-cinema); }
+
+.detalhe-titulo {
+  margin: var(--espaco-2) 0 0;
+}
+
+.detalhe-cidade {
+  color: var(--cor-texto-suave);
+  margin: var(--espaco-1) 0;
+}
+
+.detalhe-descricao {
+  margin: var(--espaco-2) 0 0;
+}
+
+.detalhe-resumo h2,
+.detalhe-avaliacoes h2 {
+  margin-top: 0;
+}
+
+.nota-media {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: var(--espaco-1) 0;
+}
+
+.nota-media .estrelas {
+  font-size: 1.3rem;
+  color: var(--cor-estrela);
+  margin-left: var(--espaco-1);
+}
+
+.total-avaliacoes {
+  color: var(--cor-texto-suave);
+  margin: 0;
+}
+
+.lista-avaliacoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.avaliacao-item {
+  border-top: 1px solid var(--cor-borda);
+  padding-top: var(--espaco-2);
+}
+
+.avaliacao-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.avaliacao-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espaco-1);
+}
+
+.estrelas {
+  color: var(--cor-estrela);
+  letter-spacing: 2px;
+}
+
+.link-voltar {
+  display: inline-block;
+  margin-bottom: var(--espaco-3);
+  text-decoration: none;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+/* A partir de 768px, a página de detalhe assume duas colunas:
+   conteúdo principal + resumo de nota, com as avaliações ocupando
+   a largura toda na linha de baixo. */
+@media (min-width: 768px) {
+  .detalhe {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "principal resumo"
+      "avaliacoes avaliacoes";
+  }
+
+  .detalhe-principal { grid-area: principal; }
+  .detalhe-resumo { grid-area: resumo; }
+  .detalhe-avaliacoes { grid-area: avaliacoes; }
+}
+
+/* ===== Página de testes (aula 03) ===== */
+.secao-teste {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.secao-teste h2 {
+  margin-top: 0;
+}
+
+.lista-resultados {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+.resultado-teste {
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.resultado-teste.ok {
+  background: #e6f4ea;
+  color: #1e6b34;
+}
+
+.resultado-teste.falha {
+  background: #fbe7e7;
+  color: #9c2c2c;
+}
+
+.lista-simples {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* ===== Estados de carregamento/erro (aula 04) ===== */
+.botoes-acao {
+  display: flex;
+  gap: var(--espaco-2);
+  margin-bottom: var(--espaco-3);
+}
+
+.botao {
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  border-radius: var(--raio);
+  border: 1px solid var(--cor-primaria);
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 8px 16px;
+}
+
+.botao:hover {
+  background: var(--cor-primaria-escura);
+  border-color: var(--cor-primaria-escura);
+}
+
+.botao--secundario {
+  background: var(--cor-branco);
+  color: var(--cor-primaria);
+}
+
+.botao--secundario:hover {
+  background: var(--cor-fundo);
+}
+
+.estado-carregando {
+  color: var(--cor-texto-suave);
+  font-style: italic;
+  margin-bottom: var(--espaco-2);
+}
+
+.estado-erro {
+  background: #fbe7e7;
+  color: #9c2c2c;
+  border-radius: var(--raio);
+  padding: var(--espaco-2);
+  margin-bottom: var(--espaco-2);
+}
+
+/* ===== Rodapé ===== */
+.rodape {
+  text-align: center;
+  padding: var(--espaco-3);
+  color: var(--cor-texto-suave);
+  font-size: 0.85rem;
+}
