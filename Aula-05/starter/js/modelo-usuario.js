@@ -1,6 +1,6 @@
 class Usuario {
   constructor(id, nome, email, senhaHash) {
-    if(typeof nome !== "string" || nome.trim().length <= 2 && nome.trim().length >= 15){
+    if(typeof nome !== "string" || nome.trim().length < 2){
       throw new ErroValidacao("O nome do Usuário deve ter no mínimo dois caracteres e no máximo 15 caracteres", "nome");
     }
     if(typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){

@@ -1,6 +1,6 @@
 class Lugar {
   constructor(id, nome, categoria, cidade, descricao) {
-    if(typeof nome !== "string" || nome.trim().length <= 2){
+    if(typeof nome !== "string" || nome.trim().length < 2){
       throw new ErroValidacao("Nome do Lugar deve ter pelo menos 2 caracteres...", "nome");
     }
     if (typeof categoria !== "string" || categoria.trim().length === 0) {
