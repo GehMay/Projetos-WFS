@@ -8,7 +8,7 @@ import { useState } from "react";
 function FormularioAvaliacao({ lugares, aoEnviar }) {
   const[lugarId, setLugarID] = useState(lugares[0]?.id ?? "")
   const[nota, setNota] = useState(5)
-  const[comentario, setComentario] = useState()
+  const[comentario, setComentario] = useState("")
   const[erro, setErro] = useState(null)
   function lidarComEnvio(evento){
     evento.preventDefault()
@@ -18,7 +18,7 @@ function FormularioAvaliacao({ lugares, aoEnviar }) {
     }
     if(comentario.trim().length < 3){
       setErro("o comentário precisa ter pelomenos 3 caracteres")
-      return;
+      return
     }
     setErro(null)
     aoEnviar(Number(lugarId),{nota: Number(nota), comentario: comentario.trim()})
@@ -29,9 +29,9 @@ function FormularioAvaliacao({ lugares, aoEnviar }) {
     <form className="formulario" onSubmit={lidarComEnvio}>
       <div className="campo-formulario">
         <label htmlFor="">Lugar</label>
-        <select id="campo-lugar" value={lugarId} onhChange={(e) => setLugarID(e.target.value)}>
+        <select id="campo-lugar" value={lugarId} onChange={(e) => setLugarID(e.target.value)}>
           {lugares.map((lugar) => (
-            <option Key={lugar.id} value={lugar.id}>
+            <option key={lugar.id} value={lugar.id}>
               {lugar.nome}
             </option>
           ))}
@@ -39,10 +39,10 @@ function FormularioAvaliacao({ lugares, aoEnviar }) {
       </div>
       <div className="campo-formulario">
         <label htmlFor="campo-nota">Nota</label>
-        <select id="campo-nota" value={nota} onhChange={(e)=>setNota(e.target.value)}>
+        <select id="campo-nota" value={nota} onChange={(e)=>setNota(e.target.value)}>
           {[5,4,3,2,1].map((valor) => (
-            <option Key={valor} value={valor}>
-              {valor}{valor === 1 ? "estrela" : "estrelas"}
+            <option key={valor} value={valor}>
+              {valor}{valor === 1 ? " estrela" : " estrelas"}
             </option>
           ))}
         </select>
@@ -58,6 +58,10 @@ function FormularioAvaliacao({ lugares, aoEnviar }) {
           />
         </label>
       </div>
+      {erro && <p className="estado-erro">{erro}</p>}
+      <button type="submit" className="botao">
+        Enviar Avaliação
+      </button>
     </form>
   )
   // TODO (Aula 07):
