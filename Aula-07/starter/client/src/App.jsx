@@ -11,34 +11,6 @@ function App() {
   const [erro, setErro] = useState(null);
 
   useEffect(() => {
-    let cancelado = false;
-    async function CarregarDados(){
-      setCarregando(true);
-      setErro(null);
-      try{
-        const[ListaLugares, listaAvaliacoes] = await Promise.all([
-          buscarAvaliacoes(),
-          buscarLugares()
-        ])
-        if(!cancelado){
-          setAvaliacoes(listaAvaliacoes),
-          setLugares(ListaLugares)
-        }
-      } catch (erroCapturado){
-        if(!cancelado){
-          setErro(erroCapturado.message)
-        }
-      } finally{
-        if(!cancelado){
-          setCarregando(false)
-        }
-      }
-      CarregarDados()
-
-      return() => {
-        cancelado = true
-      }
-    }
     // TODO (Aula 07): busque os dados dentro do useEffect (que roda uma
     // vez, na montagem do componente, por causa do array de
     // dependências vazio `[]` no final).
@@ -57,19 +29,50 @@ function App() {
     // Dica: sem isso, `carregando` nunca vira `false` e a tela fica
     // presa em "Carregando lugares..." para sempre — é assim que você
     // vai saber que ainda falta implementar este trecho.
+    let cancelado = false
+    async function carregarDados() {
+      setCarregando (true)
+      setErro (null)
+      try{
+        const [listaLugares, listaAvaliacoes] = await Promise.all([
+          buscarLugares(),
+          buscarAvaliacoes(),   
+        ])
+        
+        if(!cancelado){
+          setLugares(listaLugares)
+          setAvaliacoes(listaAvaliacoes)
+        }
+      } catch (erroCapturado){
+        if (!cancelado){
+          setErro(erroCapturado.message)
+        }
+
+      } finally{
+        if(!cancelado){
+          setCarregando(false)
+        }
+      }
+    }
+    carregarDados()
+
+    return () =>{
+      cancelado = true
+    }
   }, []);
 
-  function lidarComNovaAvaliacao(lugarId, { nota, comentario }) {
-    setAvaliacoes((atual) => [
-      ...atual,
-      {id: Date.now(), lugarId, usuarioIS: 0, nota, comentario}
-    ])
-    // TODO (Aula 07): adicione a nova avaliação ao estado `avaliacoes`
+
+      // TODO (Aula 07): adicione a nova avaliação ao estado `avaliacoes`
     // (setAvaliacoes), criando um novo objeto com um `id` único (dica:
     // Date.now()), o `lugarId` recebido, um `usuarioId` fixo (ex: 0,
     // já que ainda não existe login) e os campos `nota`/`comentario`
     // recebidos. Lembre-se: nunca modifique o array anterior
     // diretamente — crie um novo com o spread (`[...atual, novoItem]`).
+  function lidarComNovaAvaliacao(lugarId, { nota, comentario }) {
+    setAvaliacoes((atual) =>[
+      ...atual,
+      {id: DataTransfer.now(), lugarId, usuarioId: 0, nota, comentario}
+    ])
   }
 
   const lugaresComNota = lugares.map((lugar) => ({
