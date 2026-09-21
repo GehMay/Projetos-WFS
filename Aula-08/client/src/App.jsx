@@ -3,6 +3,7 @@ import Rodape from "./componentes/Rodape";
 import Home from "./paginas/Home";
 import Detalhe from "./paginas/Detalhe";
 import NaoEncontrada from "./paginas/NaoEncontrada";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 // TODO (Aula 08):
 // 1. Importe { BrowserRouter, Routes, Route } de "react-router-dom"
@@ -19,12 +20,17 @@ import NaoEncontrada from "./paginas/NaoEncontrada";
 //      última <Route> da lista)
 function App() {
   return (
-    <>
-      <Cabecalho />
-      <Home />
-      <Rodape />
-    </>
+    <BrowserRouter>
+    <Cabecalho/>
+    <Routes>
+      <Route path="/" element={<Home/>} />
+      <Route path="/lugares/:id" element={<Detalhe/>} />
+      <Route path="*" element={<NaoEncontrada/>} />
+    </Routes>
+    <Rodape/>
+    </BrowserRouter>
   );
+
 }
 
 export default App;

@@ -1,5 +1,6 @@
 import Estrelas from "./Estrelas";
 import { ICONES_CATEGORIA } from "../data/iconesCategoria";
+import { Link } from "react-router-dom";
 
 /**
  * Card de um único lugar. Recebe o objeto `lugar` inteiro via props —
