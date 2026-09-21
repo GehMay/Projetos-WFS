@@ -6,6 +6,8 @@ import { useState } from "react";
  * do que está na tela — nunca lemos o DOM diretamente.
  */
 function FormularioAvaliacao({ lugares, aoEnviar }) {
+
+
   // TODO (Aula 07):
   // 1. Crie um estado para cada campo do formulário com useState:
   //    - lugarId (inicial: lugares[0]?.id ?? "")
