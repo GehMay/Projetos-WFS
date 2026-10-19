@@ -22,18 +22,20 @@ router.post("/registro", async (req, res) => {
   }
 
   const emailNormalizado = email.trim().toLowerCase();
+  const senhaHash = await bcrypt.hash(senha, 10)
 
-  // TODO (Aula 11):
-  // 1. Gere o hash da senha com `await bcrypt.hash(senha, 10)` (10 é o
-  //    "custo" do hash — nunca guarde `senha` em texto puro).
-  // 2. Dentro de um try/catch, chame
-  //    `criarUsuario({ nome: nome.trim(), email: emailNormalizado, senhaHash })`
-  //    e responda `res.status(201).json(usuario)`.
-  // 3. No catch: o banco tem uma constraint UNIQUE em `email` — se já
-  //    existir um usuário com esse email, o MySQL lança um erro com
-  //    `erro.code === "ER_DUP_ENTRY"`. Nesse caso, responda 409 com uma
-  //    mensagem amigável. Qualquer OUTRO erro, relance (`throw erro`)
-  //    — não esconda erros inesperados.
+  try{
+    const usuario = await criarUsuario({
+      nome: nome.trim(),
+      email: emailNormalizado,
+      senhaHash,
+    });
+  } catch (erro){
+    if(erro.code === "ER_DUP_ENTRY"){
+      return res.status(404).json({erro: "Este email já é cadastrado"})
+    }
+    throw erro
+  }
 });
 
 // POST /auth/login — autentica e devolve um token JWT.
@@ -44,21 +46,26 @@ router.post("/login", async (req, res) => {
     return res.status(400).json({ erro: "Informe email e senha." });
   }
 
+  const usuario = await buscarUsuarioPorEmail(email.trim().toLowerCase())
+
   // Mensagem genérica de propósito: não revelamos se o problema foi o
   // email ou a senha, para não ajudar quem está tentando adivinhar.
   const credenciaisInvalidas = () =>
     res.status(401).json({ erro: "Email ou senha inválidos." });
-
-  // TODO (Aula 11):
-  // 1. Busque o usuário com `buscarUsuarioPorEmail(email.trim().toLowerCase())`.
-  //    Se não existir, chame `return credenciaisInvalidas();`.
-  // 2. Compare a senha recebida com o hash salvo:
-  //    `await bcrypt.compare(senha, usuario.senhaHash)`. Se não bater,
-  //    chame `return credenciaisInvalidas();` também (mesma mensagem —
-  //    não dê pistas sobre qual dos dois campos errou).
-  // 3. Se bateu, monte o payload `{ id, nome, email }` do usuário e
-  //    assine um token: `jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "2h" })`.
-  // 4. Responda `res.json({ token, usuario: payload })`.
+  if (!usuario) {
+    return credenciaisInvalidas()
+  }
+  const senhaConfere = await bcrypt.compare(senha, usuario.senhaHash)
+  if (!senhaConfere) {
+    return credenciaisInvalidas()
+  }
+  const payload = {
+    id: usuario.id,
+    nome: usuario.nome,
+    email: usuario.email
+  }
+  const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "2h" })
+  res.json({token, usuario: payload})
 });
 
 export default router;
